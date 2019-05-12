@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">Wmall</string>
+  <string name="product_image">Product Image</string>
+  <string name="naye_products">Naye Products</string>
+  <string name="dekhe_huye_products">Dekhe Huye Products</string>
+  <string name="hrs_ago">Hrs ago</string>
+  <string name="title_activity_wmall">WMallActivity</string>
+</resources>
