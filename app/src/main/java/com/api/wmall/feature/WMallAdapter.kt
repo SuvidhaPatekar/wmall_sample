@@ -13,9 +13,14 @@ import kotlinx.android.synthetic.main.item_title.view.tvTitle
 
 class WMallAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-  var items: List<Item> = listOf()
+  private var items: List<Item> = listOf()
   val VIEW_TYPE_TITLE = 0
   val VIEW_TYPE_PRODUCT = 1
+
+  fun setItems(items: List<Item>){
+    this.items = items
+    notifyDataSetChanged()
+  }
 
   override fun getItemViewType(position: Int): Int {
     return when (items[position]) {
@@ -56,19 +61,20 @@ class WMallAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   }
 
   class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val tvTitle = itemView.tvTitle
+    private val tvTitle = itemView.tvTitle
     fun bindTo() {
-
+       tvTitle.text = "test"
     }
   }
 
   class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val tvSlug = itemView.tvSlug
-    val tvTime = itemView.tvTime
-    val ivProduct = itemView.ivProduct
+    private val tvSlug = itemView.tvSlug
+    private val tvTime = itemView.tvTime
+    private val ivProduct = itemView.ivProduct
 
     fun bindTo() {
-
+       tvTime.text = "slug"
+       tvSlug.text = "time"
     }
   }
 }
