@@ -1,4 +1,4 @@
-package com.api.wmall.feature.category
+package com.api.wmall.feature.product
 
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior

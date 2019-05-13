@@ -5,49 +5,53 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.api.wmall.R
-import com.api.wmall.feature.category.ProductViewPagerFragment
+import com.api.wmall.feature.product.ProductFragment
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_wmall.progressBar
-import kotlinx.android.synthetic.main.activity_wmall.toolbar
-import kotlinx.android.synthetic.main.content_wmall.rvProducts
+import kotlinx.android.synthetic.main.activity_wmall.*
+import kotlinx.android.synthetic.main.content_wmall.*
 
-class WMallActivity : AppCompatActivity() {
+class WMallActivity : AppCompatActivity(), WMallAdapter.OnClickListener {
+    lateinit var adapter: WMallAdapter
+    lateinit var viewModel: WMallViewModel
+    private val disposable = CompositeDisposable()
 
-  lateinit var adapter: WMallAdapter
-  lateinit var viewModel: WMallViewModel
-  private val disposable = CompositeDisposable()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_wmall)
+        setSupportActionBar(toolbar)
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_wmall)
-    setSupportActionBar(toolbar)
+        adapter = WMallAdapter()
+        viewModel = WMallViewModel()
 
-    adapter = WMallAdapter()
-    viewModel = WMallViewModel()
+        rvProducts.adapter = adapter
 
-    rvProducts.adapter = adapter
+        disposable.add(viewModel.getViewStateObservable().subscribe {
+            if (it.loading) {
+                progressBar.visibility = View.VISIBLE
+            } else {
+                progressBar.visibility = View.GONE
+            }
 
-    disposable.add(viewModel.getViewStateObservable().subscribe {
-      if (it.loading) {
-        progressBar.visibility = View.VISIBLE
-      } else {
-        progressBar.visibility = View.GONE
-      }
+            if (it.listItems != null) {
+                adapter.setItems(it.listItems,this)
+            }
+        })
+        openProductFragment()
+        //disposable.add(viewModel.loadData())
+    }
 
-      if (it.listItems != null) {
-        adapter.setItems(it.listItems)
-      }
-    })
+    private fun openProductFragment(){
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.container, ProductFragment.newInstance(), "NewFragmentTag")
+        ft.commit()
+    }
 
-    val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-    ft.replace(R.id.container, ProductViewPagerFragment.newInstance(), "NewFragmentTag")
-    ft.commit()
+    override fun onCategoryClicked() {
+        openProductFragment()
+    }
 
-    //disposable.add(viewModel.loadData())
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    disposable.clear()
-  }
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.clear()
+    }
 }

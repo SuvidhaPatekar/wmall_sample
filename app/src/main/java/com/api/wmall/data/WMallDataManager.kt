@@ -1,7 +1,7 @@
 package com.api.wmall.data
 
 import com.api.wmall.feature.Item
-import com.api.wmall.response.ResponseCategory
+import com.api.wmall.response.Category
 import io.reactivex.Single
 
 object WMallDataManager {
@@ -21,7 +21,9 @@ object WMallDataManager {
         .singleOrError()
   }
 
-  fun getCategoryDetails(): Single<ResponseCategory> {
-    return wMallService.getCategoryDetails()
+  fun getCategoryDetails(): Single<List<Category>> {
+    return wMallService.getCategoryDetails().map {
+        it.data?.categories
+    }
   }
 }

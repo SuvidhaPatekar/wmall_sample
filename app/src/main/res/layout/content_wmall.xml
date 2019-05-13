@@ -8,6 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".feature.WMallActivity"
     tools:showIn="@layout/activity_wmall"
+    android:orientation="vertical"
     >
 
   <android.support.v7.widget.RecyclerView

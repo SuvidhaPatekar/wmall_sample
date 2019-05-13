@@ -7,77 +7,81 @@ import android.view.ViewGroup
 import com.api.wmall.R
 import com.api.wmall.feature.Item.Product
 import com.api.wmall.feature.Item.Title
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_product.view.ivProduct
-import kotlinx.android.synthetic.main.item_product.view.tvSlug
-import kotlinx.android.synthetic.main.item_product.view.tvTime
-import kotlinx.android.synthetic.main.item_title.view.tvTitle
+import kotlinx.android.synthetic.main.item_product.view.*
+import kotlinx.android.synthetic.main.item_title.view.*
 
-class WMallAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WMallAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-  private var items: List<Item> = listOf()
-  val VIEW_TYPE_TITLE = 0
-  val VIEW_TYPE_PRODUCT = 1
+    private var items: List<Item> = listOf()
+    private lateinit var onClickListener: OnClickListener
+    val VIEW_TYPE_TITLE = 0
+    val VIEW_TYPE_PRODUCT = 1
 
-  fun setItems(items: List<Item>){
-    this.items = items
-    notifyDataSetChanged()
-  }
-
-  override fun getItemViewType(position: Int): Int {
-    return when (items[position]) {
-      is Item.Title -> VIEW_TYPE_TITLE
-      is Item.Product -> VIEW_TYPE_PRODUCT
+    fun setItems(items: List<Item>, onClickListener: OnClickListener) {
+        this.items = items
+        this.onClickListener = onClickListener
+        notifyDataSetChanged()
     }
-  }
 
-  override fun onCreateViewHolder(
-    parent: ViewGroup,
-    viewType: Int
-  ): RecyclerView.ViewHolder {
-    return when (viewType) {
-      VIEW_TYPE_TITLE -> TitleViewHolder(
-          LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
-      )
-      VIEW_TYPE_PRODUCT -> ProductViewHolder(
-          LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
-      )
-      else -> throw IllegalStateException()
+    override fun getItemViewType(position: Int): Int {
+        return when (items[position]) {
+            is Item.Title -> VIEW_TYPE_TITLE
+            is Item.Product -> VIEW_TYPE_PRODUCT
+        }
     }
-  }
 
-  override fun getItemCount() = items.size
-
-  override fun onBindViewHolder(
-    holder: RecyclerView.ViewHolder,
-    position: Int
-  ) {
-    when (items[position]) {
-      is Item.Title -> {
-        (holder as TitleViewHolder).bindTo(items[position] as Title)
-      }
-      is Item.Product -> {
-        (holder as ProductViewHolder).bindTo(items[position] as Product)
-      }
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_TITLE -> TitleViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
+            )
+            VIEW_TYPE_PRODUCT -> ProductViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
+            )
+            else -> throw IllegalStateException()
+        }
     }
-  }
 
-  class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val tvTitle = itemView.tvTitle
-    fun bindTo(title : Title) {
-       tvTitle.text = title.title
+    override fun getItemCount() = items.size
+
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        position: Int
+    ) {
+        when (items[position]) {
+            is Item.Title -> {
+                (holder as TitleViewHolder).bindTo(items[position] as Title)
+            }
+            is Item.Product -> {
+                holder.itemView.setOnClickListener { onClickListener.onCategoryClicked() }
+                (holder as ProductViewHolder).bindTo(items[position] as Product)
+            }
+        }
     }
-  }
 
-  class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val tvSlug = itemView.tvSlug
-    private val tvTime = itemView.tvTime
-    private val ivProduct = itemView.ivProduct
-
-    fun bindTo(product: Product) {
-       tvTime.text = product.slug
-       tvSlug.text = product.slug
+    class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val tvTitle = itemView.tvTitle
+        fun bindTo(title: Title) {
+            tvTitle.text = title.title
+        }
     }
-  }
+
+    class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val tvSlug = itemView.tvSlug
+        private val tvTime = itemView.tvTime
+        private val ivProduct = itemView.ivProduct
+
+        fun bindTo(product: Product) {
+            tvTime.text = product.slug
+            tvSlug.text = product.slug
+        }
+    }
+
+    interface OnClickListener {
+        fun onCategoryClicked()
+    }
 }
 

@@ -1,4 +1,4 @@
-package com.api.wmall.feature.category
+package com.api.wmall.feature.product
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,6 +16,9 @@ import kotlinx.android.synthetic.main.fragment_product_view_pager.ivProduct
 class ProductViewPagerFragment : Fragment() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    if(arguments != null){
+
+    }
   }
 
   override fun onCreateView(
@@ -43,6 +46,12 @@ class ProductViewPagerFragment : Fragment() {
     btnShareWhatsApp.setOnClickListener {
       shareOnWhatsApp()
     }
+
+    setData()
+  }
+
+  fun setData(){
+
   }
 
   private fun showProductDetails() {
