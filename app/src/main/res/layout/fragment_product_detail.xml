@@ -76,7 +76,6 @@
         android:background="@color/colorPrimary"
         android:text="@string/book_now"
         android:textColor="@color/colorWhite"
-        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/tvDesc"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

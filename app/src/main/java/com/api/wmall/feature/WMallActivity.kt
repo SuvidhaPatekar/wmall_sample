@@ -1,58 +1,56 @@
 package com.api.wmall.feature
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.api.wmall.R
-import com.api.wmall.feature.product.ProductFragment
+import com.api.wmall.feature.product.ProductActivity
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_wmall.*
-import kotlinx.android.synthetic.main.content_wmall.*
+import kotlinx.android.synthetic.main.activity_wmall.progressBar
+import kotlinx.android.synthetic.main.activity_wmall.toolbar
+import kotlinx.android.synthetic.main.content_wmall.rvProducts
 
 class WMallActivity : AppCompatActivity(), WMallAdapter.OnClickListener {
-    lateinit var adapter: WMallAdapter
-    lateinit var viewModel: WMallViewModel
-    private val disposable = CompositeDisposable()
+  lateinit var adapter: WMallAdapter
+  lateinit var viewModel: WMallViewModel
+  private val disposable = CompositeDisposable()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_wmall)
-        setSupportActionBar(toolbar)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_wmall)
+    setSupportActionBar(toolbar)
 
-        adapter = WMallAdapter()
-        viewModel = WMallViewModel()
+    adapter = WMallAdapter()
+    viewModel = WMallViewModel()
 
 
-        rvProducts.adapter = adapter
+    rvProducts.adapter = adapter
 
-        disposable.add(viewModel.getViewStateObservable().subscribe {
-            if (it.loading) {
-                progressBar.visibility = View.VISIBLE
-            } else {
-                progressBar.visibility = View.GONE
-            }
+    disposable.add(viewModel.getViewStateObservable().subscribe {
+      if (it.loading) {
+        progressBar.visibility = View.VISIBLE
+      } else {
+        progressBar.visibility = View.GONE
+      }
 
-            if (it.listItems != null) {
-                adapter.setItems(it.listItems,this)
-            }
-        })
-        //openProductFragment()
-        disposable.add(viewModel.loadData())
-    }
+      if (it.listItems != null) {
+        adapter.setItems(it.listItems, this)
+      }
+    })
+    disposable.add(viewModel.loadData())
+  }
 
-    private fun openProductFragment(){
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.container, ProductFragment.newInstance(), "ProductFragment")
-        ft.commit()
-    }
+  private fun openProductActivity() {
+    startActivity(Intent(this, ProductActivity::class.java))
+  }
 
-    override fun onCategoryClicked() {
-        openProductFragment()
-    }
+  override fun onCategoryClicked() {
+    openProductActivity()
+  }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        disposable.clear()
-    }
+  override fun onDestroy() {
+    super.onDestroy()
+    disposable.clear()
+  }
 }

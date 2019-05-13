@@ -77,3 +77,6 @@ dependencies {
   implementation 'me.relex:circleindicator:1.2.2'
 }
 
+dependencies {
+  implementation 'com.android.support.constraint:constraint-layout:+'
+}
