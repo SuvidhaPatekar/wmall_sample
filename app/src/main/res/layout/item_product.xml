@@ -1,62 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
+    app:cardCornerRadius="8dp"
+    android:elevation="4dp"
     >
-
-  <de.hdodenhof.circleimageview.CircleImageView
-      android:id="@+id/ivProduct"
-      android:layout_width="64dp"
-      android:layout_height="64dp"
-      android:layout_margin="4dp"
-      android:src="@drawable/ic_launcher_background"
-      app:civ_border_width="2dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toLeftOf="@id/tvSlug"
-      app:layout_constraintTop_toTopOf="parent"
-      />
-
-  <TextView
-      android:id="@+id/tvSlug"
+  <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_margin="4dp"
-      android:textColor="@color/colorBlack"
-      android:textSize="16sp"
-      app:layout_constraintBottom_toTopOf="@id/tvTime"
-      app:layout_constraintLeft_toRightOf="@id/ivProduct"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      tools:text="@string/app_name"
-      />
+      >
 
-  <TextView
-      android:id="@+id/tvTime"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/app_name"
-      android:textSize="12sp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="@id/tvSlug"
-      app:layout_constraintTop_toBottomOf="@id/tvSlug"
-      tools:text="3"
-      />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivProduct"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_launcher_background"
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-  <TextView
-      android:id="@+id/tvHrsOnly"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="4dp"
-      android:text="@string/hrs_ago"
-      android:textSize="12sp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toRightOf="@id/tvTime"
-      app:layout_constraintTop_toBottomOf="@id/tvSlug"
-      />
+    <TextView
+        android:id="@+id/tvSlug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/tvTime"
+        app:layout_constraintLeft_toRightOf="@id/ivProduct"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 Hrs Ago"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/tvSlug"
+        app:layout_constraintTop_toBottomOf="@id/tvSlug"
+        />
+
+  </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

@@ -23,6 +23,7 @@ class WMallActivity : AppCompatActivity(), WMallAdapter.OnClickListener {
         adapter = WMallAdapter()
         viewModel = WMallViewModel()
 
+
         rvProducts.adapter = adapter
 
         disposable.add(viewModel.getViewStateObservable().subscribe {
@@ -36,13 +37,13 @@ class WMallActivity : AppCompatActivity(), WMallAdapter.OnClickListener {
                 adapter.setItems(it.listItems,this)
             }
         })
-        openProductFragment()
-        //disposable.add(viewModel.loadData())
+        //openProductFragment()
+        disposable.add(viewModel.loadData())
     }
 
     private fun openProductFragment(){
-        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.container, ProductFragment.newInstance(), "NewFragmentTag")
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.container, ProductFragment.newInstance(), "ProductFragment")
         ft.commit()
     }
 

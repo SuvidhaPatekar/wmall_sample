@@ -24,13 +24,8 @@ class WMallViewModel {
         .observeOn(
             AndroidSchedulers.mainThread()
         )
-        .subscribe { response, throwable ->
-          if (throwable == null) {
-            viewState.onNext(ViewState(loading = false, listItems = response))
-          } else {
-            throwable.printStackTrace()
-            viewState.onNext(ViewState(loading = false))
-          }
+        .subscribe {
+            viewState.onNext(ViewState(loading = false, listItems = it))
         }
   }
 }

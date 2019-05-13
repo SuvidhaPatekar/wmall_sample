@@ -18,10 +18,9 @@ lateinit var viewPagerAdapter: SectionsPagerAdapter
 private val disposable = CompositeDisposable()
 
 class ProductFragment : Fragment() {
+  private lateinit var categoryList: List<Category>
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    arguments?.let {
-    }
   }
 
   override fun onCreateView(
@@ -58,10 +57,11 @@ class ProductFragment : Fragment() {
 
   private fun showAllImages(categories: List<Category>) {
     viewPagerAdapter.clearAll()
-
+    categoryList = categories
     for (category in categories) {
+      val productViewPagerFragment = ProductViewPagerFragment.newInstance(category)
       viewPagerAdapter.addFragment(
-          ProductViewPagerFragment.newInstance()
+         productViewPagerFragment, category.slug
       )
     }
 
@@ -83,8 +83,6 @@ class ProductFragment : Fragment() {
     @JvmStatic
     fun newInstance() =
       ProductFragment().apply {
-        arguments = Bundle().apply {
-        }
       }
   }
 }

@@ -8,5 +8,5 @@ data class Widget(
 	val title: String,
 
 	@field:SerializedName("items")
-	val items: List<Product>
+	val products: List<Product>
 )

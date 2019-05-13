@@ -8,16 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.api.wmall.R
-import com.api.wmall.R.string
+import com.api.wmall.response.Category
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_product_view_pager.btnShareWhatsApp
 import kotlinx.android.synthetic.main.fragment_product_view_pager.btnViewDetails
 import kotlinx.android.synthetic.main.fragment_product_view_pager.ivProduct
 
+private const val CATEGORY = "CATEGORY"
+
 class ProductViewPagerFragment : Fragment() {
+  private lateinit var category: Category
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    if(arguments != null){
-
+    if (arguments != null) {
+      category = arguments!!.getSerializable(CATEGORY) as Category
     }
   }
 
@@ -46,24 +51,25 @@ class ProductViewPagerFragment : Fragment() {
     btnShareWhatsApp.setOnClickListener {
       shareOnWhatsApp()
     }
-
     setData()
   }
 
-  fun setData(){
-
+  private fun showProductDetails() {
+    val productDetailFragment = ProductDetailFragment.newInstance(category)
+    productDetailFragment.show(activity?.supportFragmentManager, "productDetailFragment")
   }
 
-  private fun showProductDetails() {
-    ProductDetailFragment.newInstance()
-        .show(activity?.supportFragmentManager, "product_detail_fragment")
+  private fun setData() {
+    Picasso.get()
+        .load(category.image.mobile)
+        .into(ivProduct)
   }
 
   private fun shareOnWhatsApp() {
     val intent = Intent(Intent.ACTION_SEND)
     intent.type = "text/plain"
     intent.setPackage("com.whatsapp")
-    intent.putExtra(Intent.EXTRA_TEXT, getString(string.whatsapp_share_msg))
+    intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.whatsapp_share_msg))
     try {
       activity?.startActivity(intent)
     } catch (ex: android.content.ActivityNotFoundException) {
@@ -73,7 +79,11 @@ class ProductViewPagerFragment : Fragment() {
   }
 
   companion object {
-    @JvmStatic fun newInstance() =
-      ProductViewPagerFragment().apply { arguments = Bundle().apply {} }
+    @JvmStatic fun newInstance(category: Category) =
+      ProductViewPagerFragment().apply {
+        arguments = Bundle().apply {
+          putSerializable(CATEGORY, category)
+        }
+      }
   }
 }

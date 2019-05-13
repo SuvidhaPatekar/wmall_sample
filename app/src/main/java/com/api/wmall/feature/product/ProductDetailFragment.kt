@@ -8,13 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.api.wmall.R
+import com.api.wmall.response.Category
 import kotlinx.android.synthetic.main.fragment_product_detail.btnBookNow
 import kotlinx.android.synthetic.main.fragment_product_detail.ivCross
 import kotlinx.android.synthetic.main.fragment_product_detail.tetAddress
+import kotlinx.android.synthetic.main.fragment_product_detail.tvPrice
+import kotlinx.android.synthetic.main.fragment_product_detail.tvTitle
+
+private const val CATEGORY = "CATEGORY"
 
 class ProductDetailFragment : BottomSheetDialogFragment() {
+  private lateinit var category: Category
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    if(arguments != null){
+      category = arguments!!.getSerializable(CATEGORY) as Category
+    }
   }
 
   override fun onCreateView(
@@ -26,8 +35,7 @@ class ProductDetailFragment : BottomSheetDialogFragment() {
   }
 
   override fun onViewCreated(
-    view: View
-      ,
+    view: View,
     savedInstanceState: Bundle?
   ) {
     super.onViewCreated(view, savedInstanceState)
@@ -43,6 +51,13 @@ class ProductDetailFragment : BottomSheetDialogFragment() {
     ivCross.setOnClickListener {
       dismiss()
     }
+
+    setData()
+  }
+
+  private fun setData(){
+    tvTitle.text = category.title
+    tvPrice.text = category.price.toString()
   }
 
   override fun onStart() {
@@ -63,6 +78,10 @@ class ProductDetailFragment : BottomSheetDialogFragment() {
 
   companion object {
     @JvmStatic
-    fun newInstance() = ProductDetailFragment().apply {}
+    fun newInstance(category: Category) = ProductDetailFragment().apply {
+      arguments = Bundle().apply {
+        putSerializable(CATEGORY, category)
+      }
+    }
   }
 }

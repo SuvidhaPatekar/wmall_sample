@@ -2,6 +2,7 @@ package com.api.wmall.data
 
 import com.api.wmall.feature.Item
 import com.api.wmall.response.Category
+import io.reactivex.Observable
 import io.reactivex.Single
 
 object WMallDataManager {
@@ -10,15 +11,15 @@ object WMallDataManager {
           WMallService::class.java
       )
 
-  fun getWidgets(): Single<List<Item>> {
+  fun getWidgets(): Observable<List<Item>> {
     return wMallService.getWidgets()
         .map { it.widgets }
         .flattenAsObservable { it }
-        .map {
-          listOf(Item.Title(it.title)) +
-              it.items.map { Item.Product(it.slug, it.image.mobile!!) }
+        .map { widget ->
+          listOf(Item.Title(widget.title)) +
+              widget.products.map{ Item.Product(it.slug, it.image.mobile, it.category) }
         }
-        .singleOrError()
+
   }
 
   fun getCategoryDetails(): Single<List<Category>> {

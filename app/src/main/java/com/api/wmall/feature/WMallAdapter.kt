@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.api.wmall.R
 import com.api.wmall.feature.Item.Product
 import com.api.wmall.feature.Item.Title
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_title.view.*
 
@@ -71,12 +72,11 @@ class WMallAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvSlug = itemView.tvSlug
-        private val tvTime = itemView.tvTime
         private val ivProduct = itemView.ivProduct
 
         fun bindTo(product: Product) {
-            tvTime.text = product.slug
-            tvSlug.text = product.slug
+            tvSlug.text = product.category
+            Picasso.get().load(product.imageUrl).placeholder(R.drawable.ic_launcher_background).into(ivProduct)
         }
     }
 
