@@ -1,6 +1,6 @@
 package com.api.wmall.response
 
-data class Widgets(
+data class Widget(
 	val title: String,
-	val items: List<Products>
+	val items: List<Product>
 )

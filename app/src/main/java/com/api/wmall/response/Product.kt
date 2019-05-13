@@ -1,6 +1,6 @@
 package com.api.wmall.response
 
-data class Products(
+data class Product(
 	val image: Image,
 	val id: Int,
 	val category: String,

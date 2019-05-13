@@ -1,7 +1,6 @@
 package com.api.wmall.feature
 
 import com.api.wmall.data.WMallDataManager
-import com.api.wmall.response.Item
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -27,9 +26,10 @@ class WMallViewModel {
         )
         .subscribe { response, throwable ->
           if (throwable == null) {
-            viewState.onNext(ViewState(loading = false))
+            viewState.onNext(ViewState(loading = false, listItems = response))
           } else {
             throwable.printStackTrace()
+            viewState.onNext(ViewState(loading = false))
           }
         }
   }

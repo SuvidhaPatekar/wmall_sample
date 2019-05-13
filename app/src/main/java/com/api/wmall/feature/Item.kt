@@ -1,4 +1,4 @@
-package com.api.wmall.response
+package com.api.wmall.feature
 
 sealed class Item {
   class Title(val title: String) : Item()

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.api.wmall.R
-import com.api.wmall.response.Item
+import com.api.wmall.feature.Item.Product
+import com.api.wmall.feature.Item.Title
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_product.view.ivProduct
 import kotlinx.android.synthetic.main.item_product.view.tvSlug
 import kotlinx.android.synthetic.main.item_product.view.tvTime
@@ -52,18 +54,18 @@ class WMallAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   ) {
     when (items[position]) {
       is Item.Title -> {
-        (holder as TitleViewHolder).bindTo()
+        (holder as TitleViewHolder).bindTo(items[position] as Title)
       }
       is Item.Product -> {
-        (holder as ProductViewHolder).bindTo()
+        (holder as ProductViewHolder).bindTo(items[position] as Product)
       }
     }
   }
 
   class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvTitle = itemView.tvTitle
-    fun bindTo() {
-       tvTitle.text = "test"
+    fun bindTo(title : Title) {
+       tvTitle.text = title.title
     }
   }
 
@@ -72,9 +74,9 @@ class WMallAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val tvTime = itemView.tvTime
     private val ivProduct = itemView.ivProduct
 
-    fun bindTo() {
-       tvTime.text = "slug"
-       tvSlug.text = "time"
+    fun bindTo(product: Product) {
+       tvTime.text = product.slug
+       tvSlug.text = product.slug
     }
   }
 }
