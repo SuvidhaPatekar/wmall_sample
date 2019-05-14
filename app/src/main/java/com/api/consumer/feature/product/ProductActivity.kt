@@ -1,6 +1,7 @@
 package com.api.consumer.feature.product
 
 import android.os.Bundle
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.api.consumer.R
@@ -61,6 +62,24 @@ class ProductActivity : AppCompatActivity() {
     }
     indicator.setViewPager(viewPager)
     viewPager.adapter = viewPagerAdapter
+    viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+      override fun onPageScrollStateChanged(state: Int) {
+      }
+
+      override fun onPageScrolled(
+        position: Int,
+        positionOffset: Float,
+        positionOffsetPixels: Int
+      ) {
+        setToolBarTitle(categories[position].title)
+      }
+
+      override fun onPageSelected(position: Int) {
+
+      }
+
+    })
   }
 
   override fun onDestroy() {
@@ -71,4 +90,5 @@ class ProductActivity : AppCompatActivity() {
   fun setToolBarTitle(title: String){
     toolbar.title = title
   }
+
 }
