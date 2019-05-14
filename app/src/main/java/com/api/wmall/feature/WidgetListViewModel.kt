@@ -11,7 +11,7 @@ import io.reactivex.subjects.BehaviorSubject
 class WidgetListViewModel {
   data class ViewState(
     val loading: Boolean,
-    val listItems: List<Item>? = null
+    val listItems: List<Item> = listOf()
   )
 
   private val viewState = BehaviorSubject.create<ViewState>()
@@ -32,9 +32,8 @@ class WidgetListViewModel {
           }
     }
 
-  fun searchData(input: String) : Int? {
-    return viewState.value.listItems?.filter {
-      item: Item ->  if(item is Product){item.category.contains(input, ignoreCase = true)}else{(item as Title).title.contains(input, ignoreCase = true)}
-    }?.size
-  }
+    fun searchData(input: String) = viewState.value.listItems
+        .filterIsInstance<Product>()
+        .filter { it.category.contains(input, ignoreCase = true) }
+        .size
 }

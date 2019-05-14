@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_product.progressBar
 import kotlinx.android.synthetic.main.activity_product.toolbar
 import kotlinx.android.synthetic.main.content_product.backgroundImage
 import kotlinx.android.synthetic.main.content_product.indicator
+import kotlinx.android.synthetic.main.content_product.segmentedProgress
 import kotlinx.android.synthetic.main.content_product.viewPager
 
 class ProductActivity : AppCompatActivity(), SegmentedProgressBar.UpdatePhotoListener {

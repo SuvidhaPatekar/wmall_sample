@@ -1,9 +1,5 @@
-package com.api.wmall. response
-
-import com.google.gson.annotations.SerializedName
+package com.api.wmall.response
 
 data class ResponseWidget(
-
-	@field:SerializedName("widgets")
-	val widgets: List<Widget>? = null
+    val widgets: List<Widget>? = null
 )

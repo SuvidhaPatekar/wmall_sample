@@ -34,7 +34,7 @@
       android:layout_marginLeft="5dp"
       android:layout_marginRight="5dp"
       android:layout_marginTop="10dp"
-      app:count="2"/>
+      app:count="4"/>
 
   <ImageView
       android:id="@+id/backgroundImage"
