@@ -1,10 +1,12 @@
-package com.api.consumer.feature
+package com.api.consumer.feature.widget
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.api.consumer.R
+import com.api.consumer.R.layout
+import com.api.consumer.feature.Item
 import com.api.consumer.feature.Item.Product
 import com.api.consumer.feature.Item.Title
 import com.squareup.picasso.Picasso
@@ -36,10 +38,10 @@ class WidgetListAdapter(private val onClickListener: OnClickListener) :
     ): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_TITLE -> TitleViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
+                LayoutInflater.from(parent.context).inflate(layout.item_title, parent, false)
             )
             VIEW_TYPE_PRODUCT -> ProductViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
+                LayoutInflater.from(parent.context).inflate(layout.item_product, parent, false)
             )
             else -> throw IllegalStateException()
         }

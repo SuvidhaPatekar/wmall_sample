@@ -1,6 +1,7 @@
-package com.api.consumer.feature
+package com.api.consumer.feature.widget
 
 import com.api.consumer.data.WMallDataManager
+import com.api.consumer.feature.Item
 import com.api.consumer.feature.Item.Product
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -18,7 +19,9 @@ class WidgetListViewModel {
   fun getViewStateObservable() = viewState.hide()!!
 
     fun loadData(): Disposable {
-      viewState.onNext(ViewState(loading = true))
+      viewState.onNext(
+          ViewState(loading = true)
+      )
 
       return WMallDataManager.getWidgets()
           .subscribeOn(Schedulers.io())
@@ -27,7 +30,11 @@ class WidgetListViewModel {
           ).subscribe { items, throwable ->
             throwable?.let {
               throwable.printStackTrace()
-            } ?: viewState.onNext(ViewState(loading = false, listItems = items))
+            } ?: viewState.onNext(
+                ViewState(
+                    loading = false, listItems = items
+                )
+            )
           }
     }
 

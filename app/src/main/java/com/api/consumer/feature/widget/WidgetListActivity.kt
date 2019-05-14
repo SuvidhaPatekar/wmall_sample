@@ -1,4 +1,4 @@
-package com.api.consumer.feature
+package com.api.consumer.feature.widget
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,13 +7,15 @@ import android.view.View
 import android.widget.Toast
 import com.api.consumer.R
 import com.api.consumer.R.string
+import com.api.consumer.feature.widget.WidgetListAdapter.OnClickListener
 import com.api.consumer.feature.product.ProductActivity
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_product.toolbar
 import kotlinx.android.synthetic.main.activity_wmall.*
 import kotlinx.android.synthetic.main.content_wmall.*
 
-class WidgetListActivity : AppCompatActivity(), WidgetListAdapter.OnClickListener {
+class WidgetListActivity : AppCompatActivity(),
+    OnClickListener {
     lateinit var adapter: WidgetListAdapter
     lateinit var viewModel: WidgetListViewModel
     private val disposable = CompositeDisposable()
