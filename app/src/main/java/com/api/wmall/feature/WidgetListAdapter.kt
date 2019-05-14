@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_title.view.*
 
-class WMallAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WidgetListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: List<Item> = listOf()
     private lateinit var onClickListener: OnClickListener

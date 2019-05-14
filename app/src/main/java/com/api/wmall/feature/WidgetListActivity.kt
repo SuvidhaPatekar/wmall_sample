@@ -11,9 +11,9 @@ import kotlinx.android.synthetic.main.activity_wmall.progressBar
 import kotlinx.android.synthetic.main.activity_wmall.toolbar
 import kotlinx.android.synthetic.main.content_wmall.rvProducts
 
-class WMallActivity : AppCompatActivity(), WMallAdapter.OnClickListener {
-  lateinit var adapter: WMallAdapter
-  lateinit var viewModel: WMallViewModel
+class WidgetListActivity : AppCompatActivity(), WidgetListAdapter.OnClickListener {
+  lateinit var adapter: WidgetListAdapter
+  lateinit var viewModel: WidgetListViewModel
   private val disposable = CompositeDisposable()
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +21,8 @@ class WMallActivity : AppCompatActivity(), WMallAdapter.OnClickListener {
     setContentView(R.layout.activity_wmall)
     setSupportActionBar(toolbar)
 
-    adapter = WMallAdapter()
-    viewModel = WMallViewModel()
+    adapter = WidgetListAdapter()
+    viewModel = WidgetListViewModel()
 
 
     rvProducts.adapter = adapter

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.api.wmall.R
+import com.api.wmall.R.string
 import com.api.wmall.response.Category
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_product_view_pager.btnShareWhatsApp
@@ -69,13 +70,14 @@ class ProductViewPagerFragment : Fragment() {
     val intent = Intent(Intent.ACTION_SEND)
     intent.type = "text/plain"
     intent.setPackage("com.whatsapp")
-    intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.whatsapp_share_msg))
+    intent.putExtra(Intent.EXTRA_TEXT, "Please check out this amazing ${category.title} product on WMall App | ${getString(R.string.app_link)}" )
     try {
       activity?.startActivity(intent)
     } catch (ex: android.content.ActivityNotFoundException) {
-      Toast.makeText(activity, "Whatsapp have not been installed.", Toast.LENGTH_SHORT)
+      Toast.makeText(activity, getString(string.whatsapp_error), Toast.LENGTH_SHORT)
           .show()
     }
+
   }
 
   companion object {

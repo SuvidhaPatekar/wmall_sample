@@ -6,7 +6,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
-class WMallViewModel {
+class WidgetListViewModel {
   data class ViewState(
     val loading: Boolean,
     val listItems: List<Item>? = null

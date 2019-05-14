@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme.NoActionBar">
     </activity>
     <activity
-        android:name=".feature.WMallActivity"
+        android:name=".feature.WidgetListActivity"
         android:label="@string/title_activity_wmall"
         android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>

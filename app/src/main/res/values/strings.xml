@@ -1,17 +1,16 @@
 <resources>
   <string name="app_name">Wmall</string>
   <string name="product_image">Product Image</string>
-  <string name="naye_products">Naye Products</string>
-  <string name="dekhe_huye_products">Dekhe Huye Products</string>
   <string name="hrs_ago">Hrs ago</string>
   <string name="title_activity_wmall">WMall</string>
   <string name="book_now">Book Now</string>
   <string name="order_placed">Your order got placed</string>
-  <string name="address_error">Please fill address before placing order</string>
+  <string name="address_error">Please enter address before placing order</string>
   <string name="address">Address</string>
   <string name="view_details">View Details</string>
   <string name="share">Share</string>
   <string name="whatsapp_share_msg">Please install wmall and enjoy shopping!!</string>
+  <string name="app_link">https://drive.google.com/open?id=1W5cSiQZi2QZKalPhe5kcVKQ2KUK6f-hX</string>
   <string name="dummy_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys
     standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
     It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
@@ -19,4 +18,5 @@
     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
     as opposed to using Content here, content here, making it look like readable English.</string>
   <string name="title_activity_product">ProductActivity</string>
+  <string name="whatsapp_error">Please install whatsapp.</string>
 </resources>

@@ -2,7 +2,6 @@ package com.api.wmall.data
 
 import com.api.wmall.BuildConfig
 import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,36 +10,25 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitProvider {
+  private fun getBaseUrl() = "https://demo0263531.mockable.io/"
 
-  private fun getBaseUrl(): String {
-    return "https://demo0263531.mockable.io/"
-  }
+  internal fun getRetrofit() = Retrofit.Builder()
+      .baseUrl(getBaseUrl())
+      .client(getOkHttpClient())
+      .addConverterFactory(GsonConverterFactory.create(getGson()))
+      .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+      .build()
 
-  internal fun getRetrofit(): Retrofit {
-    return Retrofit.Builder()
-        .baseUrl(getBaseUrl())
-        .client(getOkHttpClient())
-        .addConverterFactory(GsonConverterFactory.create(getGson()))
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .build()
-  }
-
-  private fun getOkHttpClient(): OkHttpClient {
-    val httpClientBuilder = OkHttpClient.Builder()
+  private fun getOkHttpClient() = OkHttpClient.Builder().apply {
     if (BuildConfig.DEBUG) {
-      httpClientBuilder.addInterceptor(getOkHttpLoggingInterceptor())
+      addInterceptor(HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+      })
     }
-    return httpClientBuilder.build()
-  }
+  }.build()
 
-  private fun getOkHttpLoggingInterceptor(): HttpLoggingInterceptor {
-    val loggingInterceptor = HttpLoggingInterceptor()
-    loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-    return loggingInterceptor
-  }
-
-  private fun getGson(): Gson {
-    return GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-        .create()
-  }
+  private fun getGson() = GsonBuilder()
+      .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+      .create()
 }
+
