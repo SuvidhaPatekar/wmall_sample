@@ -26,7 +26,7 @@ class WidgetListActivity : AppCompatActivity(), WidgetListAdapter.OnClickListene
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_24dp)
         adapter = WidgetListAdapter(this)
         viewModel = WidgetListViewModel()
-
+        rvProducts.isNestedScrollingEnabled = true
         rvProducts.adapter = adapter
 
         disposable.add(viewModel.getViewStateObservable().subscribe {

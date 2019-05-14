@@ -5,17 +5,21 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.api.wmall.R
 import com.api.wmall.feature.common.SectionsPagerAdapter
+import com.api.wmall.feature.common.SegmentedProgressBar
 import com.api.wmall.response.Category
+import com.squareup.picasso.Picasso
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_product.progressBar
 import kotlinx.android.synthetic.main.activity_product.toolbar
+import kotlinx.android.synthetic.main.content_product.backgroundImage
 import kotlinx.android.synthetic.main.content_product.indicator
 import kotlinx.android.synthetic.main.content_product.viewPager
 
-class ProductActivity : AppCompatActivity() {
+class ProductActivity : AppCompatActivity(), SegmentedProgressBar.UpdatePhotoListener {
   lateinit var viewModel: ProductViewModel
   lateinit var viewPagerAdapter: SectionsPagerAdapter
   private val disposable = CompositeDisposable()
+  lateinit var categoryList: List<Category>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -39,9 +43,11 @@ class ProductActivity : AppCompatActivity() {
       }
 
       if (it.categories != null) {
-        showAllImages(it.categories)
+        categoryList = it.categories
+        //showAllImages(it.categories)
       }
     })
+    SegmentedProgressBar.registerUpdateListener(this)
     disposable.add(viewModel.loadData())
   }
 
@@ -61,6 +67,10 @@ class ProductActivity : AppCompatActivity() {
     }
     indicator.setViewPager(viewPager)
     viewPager.adapter = viewPagerAdapter
+  }
+
+  override fun changePhoto(number: Int) {
+      Picasso.get().load(categoryList[number].image.mobile).into(backgroundImage)
   }
 
   override fun onDestroy() {

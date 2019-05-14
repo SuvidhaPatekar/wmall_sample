@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlParallax"
     android:layout_width="match_parent"
@@ -11,6 +11,7 @@
       android:id="@+id/viewPager"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:visibility="gone"
       />
 
 
@@ -23,6 +24,22 @@
       android:layout_marginBottom="48dp"
       app:ci_drawable="@drawable/bg_3dp"
       app:ci_drawable_unselected="@drawable/white_border_drawable"
-      />
+     android:visibility="gone"/>
 
-</RelativeLayout>
+  <com.api.wmall.feature.common.SegmentedProgressBar
+      android:id="@+id/segmentedProgress"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp"
+      android:layout_marginLeft="5dp"
+      android:layout_marginRight="5dp"
+      android:layout_marginTop="10dp"
+      app:count="2"/>
+
+  <ImageView
+      android:id="@+id/backgroundImage"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:alpha=".7"
+      android:scaleType="fitXY"/>
+</FrameLayout>

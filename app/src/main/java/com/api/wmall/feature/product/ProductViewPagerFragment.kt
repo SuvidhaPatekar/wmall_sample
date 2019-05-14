@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_product_view_pager.ivProduct
 private const val CATEGORY = "CATEGORY"
 
 class ProductViewPagerFragment : Fragment() {
+
   private lateinit var category: Category
 
   override fun onCreate(savedInstanceState: Bundle?) {
