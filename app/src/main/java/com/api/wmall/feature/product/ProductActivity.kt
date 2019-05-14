@@ -21,10 +21,15 @@ class ProductActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_product)
     setSupportActionBar(toolbar)
+    toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+
     viewPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
     viewPagerAdapter.registerDataSetObserver(indicator.dataSetObserver)
-
     viewModel = ProductViewModel()
+
+    toolbar.setNavigationOnClickListener {
+      onBackPressed()
+    }
 
     disposable.add(viewModel.getViewStateObservable().subscribe {
       if (it.loading) {
@@ -45,7 +50,7 @@ class ProductActivity : AppCompatActivity() {
     for (category in categories) {
       val productViewPagerFragment = ProductViewPagerFragment.newInstance(category)
       viewPagerAdapter.addFragment(
-          productViewPagerFragment, category.slug
+          productViewPagerFragment, category.title
       )
     }
 
@@ -63,4 +68,7 @@ class ProductActivity : AppCompatActivity() {
     disposable.clear()
   }
 
+  fun setToolBarTitle(title: String){
+    toolbar.title = title
+  }
 }

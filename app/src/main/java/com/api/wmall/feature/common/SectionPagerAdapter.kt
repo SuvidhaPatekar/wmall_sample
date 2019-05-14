@@ -20,19 +20,6 @@ class SectionsPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) 
     fragmentTitle.add(title)
   }
 
-  fun addFragment(fragment: Fragment) {
-    fragments.add(fragment)
-  }
-
-  internal fun addFragment(
-    index: Int,
-    fragment: Fragment,
-    title: String
-  ) {
-    fragments.add(index, fragment)
-    fragmentTitle.add(index, title)
-  }
-
   override fun getItem(position: Int): Fragment? {
     try {
       return fragments[position]

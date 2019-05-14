@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.api.wmall.R
+import com.api.wmall.R.string
 import com.api.wmall.feature.product.ProductActivity
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_product.toolbar
 import kotlinx.android.synthetic.main.activity_wmall.*
 import kotlinx.android.synthetic.main.content_wmall.*
 
@@ -20,7 +22,8 @@ class WidgetListActivity : AppCompatActivity(), WidgetListAdapter.OnClickListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wmall)
         setSupportActionBar(toolbar)
-
+        toolbar.title = getString(string.categories)
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black_24dp)
         adapter = WidgetListAdapter(this)
         viewModel = WidgetListViewModel()
 

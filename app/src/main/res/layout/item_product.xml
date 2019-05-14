@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardCornerRadius="8dp"
     android:elevation="4dp"
+    app:cardCornerRadius="8dp"
     >
   <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"
@@ -26,10 +26,25 @@
         />
 
     <TextView
-        android:id="@+id/tvSlug"
+        android:id="@+id/tvCount"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="3"
+        />
+
+    <TextView
+        android:id="@+id/tvCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_margin="8dp"
         android:textColor="@color/colorBlack"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/tvTime"
@@ -42,11 +57,12 @@
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3 Hrs Ago"
+        android:layout_marginBottom="4dp"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/tvSlug"
-        app:layout_constraintTop_toBottomOf="@id/tvSlug"
+        app:layout_constraintLeft_toLeftOf="@id/tvCategory"
+        app:layout_constraintTop_toBottomOf="@id/tvCategory"
+        android:text="@string/hrs_ago"
         />
 
   </android.support.constraint.ConstraintLayout>

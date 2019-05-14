@@ -1,8 +1,8 @@
 <resources>
   <string name="app_name">Wmall</string>
   <string name="product_image">Product Image</string>
-  <string name="hrs_ago">Hrs ago</string>
-  <string name="title_activity_wmall">WMall</string>
+  <string name="hrs_ago">3 Hrs ago</string>
+  <string name="title_activity_wmall">Categories</string>
   <string name="book_now">Book Now</string>
   <string name="order_placed">Your order got placed</string>
   <string name="address_error">Please enter address before placing order</string>
@@ -17,8 +17,9 @@
     It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
     as opposed to using Content here, content here, making it look like readable English.</string>
-  <string name="title_activity_product">ProductActivity</string>
+  <string name="title_activity_product">Products</string>
   <string name="whatsapp_error">Please install whatsapp.</string>
   <string name="search">Search</string>
   <string name="rs_price">\u20B9 %d/-</string>
+  <string name="categories">Categories</string>
 </resources>

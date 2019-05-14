@@ -17,7 +17,7 @@ object WMallDataManager {
         .flattenAsObservable { it }
         .map { widget ->
           listOf(Item.Title(widget.title)) +
-              widget.products.map{ Item.Product(it.slug, it.image.mobile, it.category) }
+              widget.products.map{ Item.Product(it.itemCount, it.image.mobile, it.category, it.slug) }
         }
         .flatMapIterable { it }
         .toList()

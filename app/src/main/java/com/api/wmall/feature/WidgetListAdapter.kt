@@ -70,11 +70,13 @@ class WidgetListAdapter(private val onClickListener: OnClickListener) :
     }
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvSlug = itemView.tvSlug
+        private val tvCategory = itemView.tvCategory
         private val ivProduct = itemView.ivProduct
+        private val tvCount = itemView.tvCount
 
         fun bindTo(product: Product) {
-            tvSlug.text = product.category
+            tvCategory.text = product.category
+            tvCount.text = product.count.toString()
             Picasso.get().load(product.imageUrl).placeholder(R.drawable.ic_launcher_background).into(
                 ivProduct
             )

@@ -53,6 +53,7 @@ class ProductViewPagerFragment : Fragment() {
     btnShareWhatsApp.setOnClickListener {
       shareOnWhatsApp()
     }
+    (activity as ProductActivity).setToolBarTitle(category.title)
     setData()
   }
 
