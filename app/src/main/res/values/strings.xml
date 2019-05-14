@@ -2,7 +2,7 @@
   <string name="app_name">Wmall</string>
   <string name="product_image">Product Image</string>
   <string name="hrs_ago">3 Hrs ago</string>
-  <string name="title_activity_wmall">Categories</string>
+  <string name="title_activity_wmall">Wmall</string>
   <string name="book_now">Book Now</string>
   <string name="order_placed">Your order got placed</string>
   <string name="address_error">Please enter address before placing order</string>
