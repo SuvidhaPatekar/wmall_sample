@@ -15,7 +15,7 @@ object RetrofitProvider {
   internal fun getRetrofit() = Retrofit.Builder()
       .baseUrl(getBaseUrl())
       .client(getOkHttpClient())
-      .addConverterFactory(GsonConverterFactory.create(getGson()))
+      .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
       .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
       .build()
 
@@ -27,8 +27,5 @@ object RetrofitProvider {
     }
   }.build()
 
-  private fun getGson() = GsonBuilder()
-      .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-      .create()
 }
 
