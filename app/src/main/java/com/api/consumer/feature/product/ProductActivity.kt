@@ -1,19 +1,18 @@
-package com.api.wmall.feature.product
+package com.api.consumer.feature.product
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.api.wmall.R
-import com.api.wmall.feature.common.SectionsPagerAdapter
-import com.api.wmall.feature.common.SegmentedProgressBar
-import com.api.wmall.response.Category
+import com.api.consumer.R
+import com.api.consumer.feature.common.SectionsPagerAdapter
+import com.api.consumer.feature.common.SegmentedProgressBar
+import com.api.consumer.response.Category
 import com.squareup.picasso.Picasso
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_product.progressBar
 import kotlinx.android.synthetic.main.activity_product.toolbar
 import kotlinx.android.synthetic.main.content_product.backgroundImage
 import kotlinx.android.synthetic.main.content_product.indicator
-import kotlinx.android.synthetic.main.content_product.segmentedProgress
 import kotlinx.android.synthetic.main.content_product.viewPager
 
 class ProductActivity : AppCompatActivity(), SegmentedProgressBar.UpdatePhotoListener {

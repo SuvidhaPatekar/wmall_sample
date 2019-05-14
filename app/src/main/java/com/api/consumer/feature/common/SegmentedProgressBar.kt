@@ -1,4 +1,4 @@
-package com.api.wmall.feature.common
+package com.api.consumer.feature.common
 
 import android.content.Context
 import android.graphics.Canvas
@@ -9,7 +9,7 @@ import android.graphics.Path
 import android.support.annotation.Nullable
 import android.util.AttributeSet
 import android.view.View
-import com.api.wmall.R
+import com.api.consumer.R
 
 class SegmentedProgressBar(context: Context, @Nullable attrs: AttributeSet) : View(
     context, attrs

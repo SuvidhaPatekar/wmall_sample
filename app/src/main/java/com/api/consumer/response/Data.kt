@@ -1,4 +1,4 @@
-package com.api.wmall.response
+package com.api.consumer.response
 
 import com.google.gson.annotations.SerializedName
 

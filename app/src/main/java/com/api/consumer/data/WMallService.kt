@@ -1,7 +1,7 @@
-package com.api.wmall.data
+package com.api.consumer.data
 
-import com.api.wmall.response.ResponseCategory
-import com.api.wmall.response.ResponseWidget
+import com.api.consumer.response.ResponseCategory
+import com.api.consumer.response.ResponseWidget
 import io.reactivex.Single
 import retrofit2.http.GET
 

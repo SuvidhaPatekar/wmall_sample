@@ -1,13 +1,13 @@
-package com.api.wmall.feature
+package com.api.consumer.feature
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
-import com.api.wmall.R
-import com.api.wmall.R.string
-import com.api.wmall.feature.product.ProductActivity
+import com.api.consumer.R
+import com.api.consumer.R.string
+import com.api.consumer.feature.product.ProductActivity
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_product.toolbar
 import kotlinx.android.synthetic.main.activity_wmall.*

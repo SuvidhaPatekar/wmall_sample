@@ -1,4 +1,4 @@
-package com.api.wmall
+package com.api.consumer
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

@@ -1,12 +1,12 @@
-package com.api.wmall.feature
+package com.api.consumer.feature
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.api.wmall.R
-import com.api.wmall.feature.Item.Product
-import com.api.wmall.feature.Item.Title
+import com.api.consumer.R
+import com.api.consumer.feature.Item.Product
+import com.api.consumer.feature.Item.Title
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_title.view.*

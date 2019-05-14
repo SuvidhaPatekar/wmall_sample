@@ -1,4 +1,4 @@
-package com.api.wmall.feature.product
+package com.api.consumer.feature.product
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -8,9 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.api.wmall.R
-import com.api.wmall.R.string
-import com.api.wmall.response.Category
+import com.api.consumer.R
+import com.api.consumer.R.string
+import com.api.consumer.response.Category
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_product_view_pager.btnShareWhatsApp
 import kotlinx.android.synthetic.main.fragment_product_view_pager.btnViewDetails

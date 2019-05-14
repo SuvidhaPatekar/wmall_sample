@@ -1,4 +1,4 @@
-package com.api.wmall.feature.common
+package com.api.consumer.feature.common
 
 import android.os.Parcelable
 import android.support.v4.app.Fragment

@@ -26,7 +26,7 @@
       app:ci_drawable_unselected="@drawable/white_border_drawable"
      android:visibility="gone"/>
 
-  <com.api.wmall.feature.common.SegmentedProgressBar
+  <com.api.consumer.feature.common.SegmentedProgressBar
       android:id="@+id/segmentedProgress"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

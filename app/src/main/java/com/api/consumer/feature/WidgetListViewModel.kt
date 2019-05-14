@@ -1,8 +1,7 @@
-package com.api.wmall.feature
+package com.api.consumer.feature
 
-import com.api.wmall.data.WMallDataManager
-import com.api.wmall.feature.Item.Product
-import com.api.wmall.feature.Item.Title
+import com.api.consumer.data.WMallDataManager
+import com.api.consumer.feature.Item.Product
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers

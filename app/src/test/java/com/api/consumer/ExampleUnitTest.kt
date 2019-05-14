@@ -1,4 +1,4 @@
-package com.api.wmall
+package com.api.consumer
 
 import org.junit.Test
 

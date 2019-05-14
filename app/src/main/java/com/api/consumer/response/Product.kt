@@ -1,4 +1,4 @@
-package com.api.wmall.response
+package com.api.consumer.response
 
 data class Product(
     val image: Image,

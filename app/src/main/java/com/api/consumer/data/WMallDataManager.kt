@@ -1,8 +1,7 @@
-package com.api.wmall.data
+package com.api.consumer.data
 
-import com.api.wmall.feature.Item
-import com.api.wmall.response.Category
-import io.reactivex.Observable
+import com.api.consumer.feature.Item
+import com.api.consumer.response.Category
 import io.reactivex.Single
 
 object WMallDataManager {

@@ -1,6 +1,6 @@
-package com.api.wmall.data
+package com.api.consumer.data
 
-import com.api.wmall.BuildConfig
+import com.api.consumer.BuildConfig
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
