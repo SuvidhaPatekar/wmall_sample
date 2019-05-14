@@ -1,5 +1,6 @@
 package com.api.wmall.feature.product
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -67,21 +68,29 @@ class ProductViewPagerFragment : Fragment() {
   }
 
   private fun shareOnWhatsApp() {
-    val intent = Intent(Intent.ACTION_SEND)
-    intent.type = "text/plain"
-    intent.setPackage("com.whatsapp")
-    intent.putExtra(Intent.EXTRA_TEXT, "Please check out this amazing ${category.title} product on WMall App | ${getString(R.string.app_link)}" )
-    try {
-      activity?.startActivity(intent)
-    } catch (ex: android.content.ActivityNotFoundException) {
-      Toast.makeText(activity, getString(string.whatsapp_error), Toast.LENGTH_SHORT)
-          .show()
+    Intent(Intent.ACTION_SEND).apply {
+      type = "text/plain"
+      setPackage("com.whatsapp")
+      putExtra(
+          Intent.EXTRA_TEXT,
+          "Please check out this amazing ${category.title} product on WMall App | ${getString(
+              R.string.app_link
+          )}"
+      )
     }
-
+        .let {
+          try {
+            startActivity(it)
+          } catch (ex: ActivityNotFoundException) {
+            Toast.makeText(activity, getString(string.whatsapp_error), Toast.LENGTH_SHORT)
+                .show()
+          }
+        }
   }
 
   companion object {
-    @JvmStatic fun newInstance(category: Category) =
+    @JvmStatic
+    fun newInstance(category: Category) =
       ProductViewPagerFragment().apply {
         arguments = Bundle().apply {
           putSerializable(CATEGORY, category)

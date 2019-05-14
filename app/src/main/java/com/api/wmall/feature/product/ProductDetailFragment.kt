@@ -57,7 +57,7 @@ class ProductDetailFragment : BottomSheetDialogFragment() {
 
   private fun setData(){
     tvTitle.text = category.title
-    tvPrice.text = category.price.toString()
+    tvPrice.text = String.format(getString(R.string.rs_price),category.price)
   }
 
   override fun onStart() {

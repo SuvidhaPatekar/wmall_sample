@@ -11,18 +11,17 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_title.view.*
 
-class WidgetListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+const val VIEW_TYPE_TITLE = 0
+const val VIEW_TYPE_PRODUCT = 1
 
-    private var items: List<Item> = listOf()
-    private lateinit var onClickListener: OnClickListener
-    val VIEW_TYPE_TITLE = 0
-    val VIEW_TYPE_PRODUCT = 1
+class WidgetListAdapter(private val onClickListener: OnClickListener) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    fun setItems(items: List<Item>, onClickListener: OnClickListener) {
-        this.items = items
-        this.onClickListener = onClickListener
-        notifyDataSetChanged()
-    }
+    var items: List<Item> = listOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
@@ -76,7 +75,9 @@ class WidgetListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bindTo(product: Product) {
             tvSlug.text = product.category
-            Picasso.get().load(product.imageUrl).placeholder(R.drawable.ic_launcher_background).into(ivProduct)
+            Picasso.get().load(product.imageUrl).placeholder(R.drawable.ic_launcher_background).into(
+                ivProduct
+            )
         }
     }
 

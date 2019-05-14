@@ -11,7 +11,7 @@ object WMallDataManager {
           WMallService::class.java
       )
 
-  fun getWidgets(): Observable<List<Item>> {
+  fun getWidgets(): Single<MutableList<Item>> {
     return wMallService.getWidgets()
         .map { it.widgets }
         .flattenAsObservable { it }
@@ -19,7 +19,8 @@ object WMallDataManager {
           listOf(Item.Title(widget.title)) +
               widget.products.map{ Item.Product(it.slug, it.image.mobile, it.category) }
         }
-
+        .flatMapIterable { it }
+        .toList()
   }
 
   fun getCategoryDetails(): Single<List<Category>> {

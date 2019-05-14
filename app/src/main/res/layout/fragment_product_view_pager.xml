@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorBlack"
     tools:context=".feature.product.ProductViewPagerFragment"
     >
 
@@ -22,7 +23,7 @@
       app:layout_constraintTop_toTopOf="parent"
       />
 
-  <Button
+  <android.support.design.button.MaterialButton
       android:id="@+id/btnViewDetails"
       android:layout_width="0dp"
       android:layout_height="60dp"
@@ -33,12 +34,14 @@
       android:elevation="4dp"
       android:text="@string/view_details"
       android:textColor="@color/colorWhite"
+      android:textSize="16sp"
+      app:cornerRadius="16dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toLeftOf="@id/btnShareWhatsApp"
       />
 
-  <Button
+  <android.support.design.button.MaterialButton
       android:id="@+id/btnShareWhatsApp"
       android:layout_width="0dp"
       android:layout_height="60dp"
@@ -46,9 +49,10 @@
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
       android:background="@color/colorPrimary"
-      android:elevation="4dp"
       android:text="@string/share"
       android:textColor="@color/colorWhite"
+      android:textSize="16sp"
+      app:cornerRadius="16dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toRightOf="@id/btnViewDetails"
       app:layout_constraintRight_toRightOf="parent"
