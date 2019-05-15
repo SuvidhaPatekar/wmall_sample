@@ -15,7 +15,7 @@
       android:layout_gravity="center_horizontal"
       app:ci_animator="@anim/alpha"
       app:ci_animator_reverse="@anim/noop"
-      app:ci_drawable="@drawable/bg_3dp"
+      app:ci_drawable="@drawable/bg_indicator"
       app:ci_drawable_unselected="@drawable/white_border_drawable"
       app:ci_height="8dp"
       app:ci_width="60dp"
