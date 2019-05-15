@@ -20,6 +20,6 @@
   <string name="title_activity_product">Products</string>
   <string name="whatsapp_error">Please install whatsapp.</string>
   <string name="search">Search</string>
-  <string name="rs_price">\u20B9 %d/-</string>
+  <string name="rs_price">\u20B9%d/-</string>
   <string name="categories">Categories</string>
 </resources>

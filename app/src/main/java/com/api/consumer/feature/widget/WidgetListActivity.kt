@@ -44,7 +44,7 @@ class WidgetListActivity : AppCompatActivity(),
     btnSearch.setOnClickListener {
       if (!search.text.toString().isBlank()) {
         Toast.makeText(this,
-            " ${viewModel.searchData(search.text.toString())} results found for the search",
+            "${viewModel.searchData(search.text.toString())} results found for the ${search.text.toString()}",
             Toast.LENGTH_SHORT).show()
       }
     }
