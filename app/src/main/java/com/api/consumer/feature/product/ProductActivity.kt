@@ -8,14 +8,12 @@ import com.api.consumer.R
 import com.api.consumer.feature.common.SectionsPagerAdapter
 import com.api.consumer.response.Category
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_product.progressBar
-import kotlinx.android.synthetic.main.activity_product.toolbar
-import kotlinx.android.synthetic.main.content_product.indicator
-import kotlinx.android.synthetic.main.content_product.viewPager
+import kotlinx.android.synthetic.main.activity_product.*
+import kotlinx.android.synthetic.main.content_product.*
 
 class ProductActivity : AppCompatActivity() {
-  lateinit var viewModel: ProductViewModel
-  lateinit var viewPagerAdapter: SectionsPagerAdapter
+  private lateinit var viewModel: ProductViewModel
+  private lateinit var viewPagerAdapter: SectionsPagerAdapter
   private val disposable = CompositeDisposable()
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +23,6 @@ class ProductActivity : AppCompatActivity() {
     toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
 
     viewPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
-    viewPagerAdapter.registerDataSetObserver(indicator.dataSetObserver)
     viewModel = ProductViewModel()
 
     toolbar.setNavigationOnClickListener {
@@ -33,53 +30,45 @@ class ProductActivity : AppCompatActivity() {
     }
 
     disposable.add(viewModel.getViewStateObservable().subscribe {
-      if (it.loading) {
-        progressBar.visibility = View.VISIBLE
+      progressBar.visibility = if (it.loading) {
+        View.VISIBLE
       } else {
-        progressBar.visibility = View.GONE
+        View.GONE
       }
-
-      if (it.categories != null) {
-        showAllImages(it.categories)
-      }
+      showAllImages(it.categories)
     })
-    disposable.add(viewModel.loadData())
-  }
+    disposable.add(viewModel.fetchCategory())
 
-  private fun showAllImages(categories: List<Category>) {
-    viewPagerAdapter.clearAll()
-    for (category in categories) {
-      val productViewPagerFragment = ProductViewPagerFragment.newInstance(category)
-      viewPagerAdapter.addFragment(
-          productViewPagerFragment, category.title
-      )
-    }
-
-    if (viewPagerAdapter.count == 1) {
-      indicator.visibility = View.GONE
-    } else {
-      indicator.visibility = View.VISIBLE
-    }
-    indicator.setViewPager(viewPager)
     viewPager.adapter = viewPagerAdapter
-    viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+    indicator.setViewPager(viewPager)
+    viewPagerAdapter.registerDataSetObserver(indicator.dataSetObserver)
+    viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
       override fun onPageScrollStateChanged(state: Int) {
       }
 
-      override fun onPageScrolled(
-        position: Int,
-        positionOffset: Float,
-        positionOffsetPixels: Int
-      ) {
-        setToolBarTitle(categories[position].title)
+      override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        setToolBarTitle(viewModel.viewState.value.categories[position].title)
       }
 
       override fun onPageSelected(position: Int) {
 
       }
-
     })
+  }
+
+  private fun showAllImages(categories: List<Category>) {
+    viewPagerAdapter.clearAll()
+    categories.forEach {
+      viewPagerAdapter.addFragment(ProductViewPagerFragment.newInstance(it), it.title)
+    }
+
+    indicator.visibility = if (viewPagerAdapter.count == 1) {
+      View.GONE
+    } else {
+      View.VISIBLE
+    }
+    viewPagerAdapter.notifyDataSetChanged()
   }
 
   override fun onDestroy() {
@@ -90,5 +79,4 @@ class ProductActivity : AppCompatActivity() {
   fun setToolBarTitle(title: String){
     toolbar.title = title
   }
-
 }

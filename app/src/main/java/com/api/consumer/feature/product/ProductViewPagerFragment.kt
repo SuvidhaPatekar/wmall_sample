@@ -12,9 +12,7 @@ import com.api.consumer.R
 import com.api.consumer.R.string
 import com.api.consumer.response.Category
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_product_view_pager.btnShareWhatsApp
-import kotlinx.android.synthetic.main.fragment_product_view_pager.btnViewDetails
-import kotlinx.android.synthetic.main.fragment_product_view_pager.ivProduct
+import kotlinx.android.synthetic.main.fragment_product_view_pager.*
 
 private const val CATEGORY = "CATEGORY"
 
@@ -30,17 +28,17 @@ class ProductViewPagerFragment : Fragment() {
   }
 
   override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? {
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_product_view_pager, container, false)
   }
 
   override fun onViewCreated(
-    view: View,
-    savedInstanceState: Bundle?
+      view: View,
+      savedInstanceState: Bundle?
   ) {
     super.onViewCreated(view, savedInstanceState)
     btnViewDetails.setOnClickListener {
@@ -54,7 +52,7 @@ class ProductViewPagerFragment : Fragment() {
     btnShareWhatsApp.setOnClickListener {
       shareOnWhatsApp()
     }
-      setData()
+    setData()
   }
 
   private fun showProductDetails() {
@@ -78,24 +76,23 @@ class ProductViewPagerFragment : Fragment() {
               R.string.app_link
           )}"
       )
+    }.let {
+      try {
+        startActivity(it)
+      } catch (ex: ActivityNotFoundException) {
+        Toast.makeText(activity, getString(string.whatsapp_error), Toast.LENGTH_SHORT)
+            .show()
+      }
     }
-        .let {
-          try {
-            startActivity(it)
-          } catch (ex: ActivityNotFoundException) {
-            Toast.makeText(activity, getString(string.whatsapp_error), Toast.LENGTH_SHORT)
-                .show()
-          }
-        }
   }
 
   companion object {
     @JvmStatic
     fun newInstance(category: Category) =
-      ProductViewPagerFragment().apply {
-        arguments = Bundle().apply {
-          putSerializable(CATEGORY, category)
+        ProductViewPagerFragment().apply {
+          arguments = Bundle().apply {
+            putSerializable(CATEGORY, category)
+          }
         }
-      }
   }
 }

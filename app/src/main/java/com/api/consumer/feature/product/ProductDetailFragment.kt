@@ -9,35 +9,26 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.api.consumer.R
 import com.api.consumer.response.Category
-import kotlinx.android.synthetic.main.fragment_product_detail.btnBookNow
-import kotlinx.android.synthetic.main.fragment_product_detail.ivCross
-import kotlinx.android.synthetic.main.fragment_product_detail.tetAddress
-import kotlinx.android.synthetic.main.fragment_product_detail.tvPrice
-import kotlinx.android.synthetic.main.fragment_product_detail.tvTitle
-
-private const val CATEGORY = "CATEGORY"
+import kotlinx.android.synthetic.main.fragment_product_detail.*
 
 class ProductDetailFragment : BottomSheetDialogFragment() {
+
   private lateinit var category: Category
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    if(arguments != null){
+    if (arguments != null) {
       category = arguments!!.getSerializable(CATEGORY) as Category
     }
   }
 
   override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
+      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View? {
     return inflater.inflate(R.layout.fragment_product_detail, container, false)
   }
 
-  override fun onViewCreated(
-    view: View,
-    savedInstanceState: Bundle?
-  ) {
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     btnBookNow.setOnClickListener {
       if (tetAddress.text.toString().isBlank()) {
@@ -55,9 +46,9 @@ class ProductDetailFragment : BottomSheetDialogFragment() {
     setData()
   }
 
-  private fun setData(){
+  private fun setData() {
     tvTitle.text = category.title
-    tvPrice.text = String.format(getString(R.string.rs_price),category.price)
+    tvPrice.text = String.format(getString(R.string.rs_price), category.price)
   }
 
   override fun onStart() {
@@ -77,6 +68,8 @@ class ProductDetailFragment : BottomSheetDialogFragment() {
   }
 
   companion object {
+    private const val CATEGORY = "CATEGORY"
+
     @JvmStatic
     fun newInstance(category: Category) = ProductDetailFragment().apply {
       arguments = Bundle().apply {

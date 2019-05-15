@@ -4,7 +4,7 @@
   <string name="hrs_ago">3 Hrs ago</string>
   <string name="title_activity_wmall">Wmall</string>
   <string name="book_now">Book Now</string>
-  <string name="order_placed">Your order got placed</string>
+  <string name="order_placed">Order placed successfully</string>
   <string name="address_error">Please enter address before placing order</string>
   <string name="address">Address</string>
   <string name="view_details">View Details</string>

@@ -8,30 +8,30 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
 class ProductViewModel {
-    data class ViewState(
-        val loading: Boolean,
-        val categories: List<Category>? = null
-    )
+  data class ViewState(
+      val loading: Boolean,
+      val categories: List<Category> = listOf()
+  )
 
-    private val viewState = BehaviorSubject.create<ViewState>()
+  val viewState = BehaviorSubject.create<ViewState>()
 
-    fun getViewStateObservable() = viewState.hide()!!
+  fun getViewStateObservable() = viewState.hide()!!
 
-    fun loadData(): Disposable {
-        viewState.onNext(ViewState(loading = true))
+  fun fetchCategory(): Disposable {
+    viewState.onNext(ViewState(loading = true))
 
-        return WMallDataManager.getCategoryDetails()
-            .subscribeOn(Schedulers.io())
-            .observeOn(
-                AndroidSchedulers.mainThread()
-            )
-            .subscribe { response, throwable ->
-                if (throwable == null) {
-                    viewState.onNext(ViewState(loading = false, categories = response))
-                } else {
-                    throwable.printStackTrace()
-                    viewState.onNext(ViewState(loading = false))
-                }
-            }
-    }
+    return WMallDataManager.getCategoryDetails()
+        .subscribeOn(Schedulers.io())
+        .observeOn(
+            AndroidSchedulers.mainThread()
+        )
+        .subscribe { response, throwable ->
+          if (throwable == null) {
+            viewState.onNext(ViewState(loading = false, categories = response))
+          } else {
+            throwable.printStackTrace()
+            viewState.onNext(ViewState(loading = false))
+          }
+        }
+  }
 }
